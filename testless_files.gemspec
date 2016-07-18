@@ -9,9 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Pedro Mamede"]
   spec.email         = ["pedro.mamede@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Be aware of files that have no test_spec}
+  spec.description   = %q{This gem will look for files that have no spec testing them (using the rails/rspec naming conventions)}
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
