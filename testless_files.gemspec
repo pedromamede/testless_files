@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["pedro.mamede@gmail.com"]
 
   spec.summary       = %q{Be aware of files that have no test_spec}
-  spec.description   = %q{This gem will look for files that have no spec testing them (using the rails/rspec naming conventions)}
+  spec.description   = %q{This gem will look for '.rb' files that are not being tested at all. It uses the rails/rspec naming conventions (spec files missing)}
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
