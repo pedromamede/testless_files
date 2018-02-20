@@ -1,6 +1,17 @@
+require 'active_support/core_ext/module/attribute_accessors'
 require "testless_files/version"
+require "testless_files/configuration"
 
 module TestlessFiles
+
+  DEFAULT_WATCHED_FOLDERS = ["models", "controllers", "helpers", "mailers", "workers", "services"]
+
+  mattr_accessor :config
+
+  def self.configure
+    self.config ||= TestlessFiles::Configuration.new
+    yield(config) if block_given?
+  end
 
   def self.verify
     check_testless_files do |testless_files|
@@ -21,7 +32,8 @@ module TestlessFiles
   end
 
   def self.check_testless_files
-    folders = ["models", "controllers", "helpers", "mailers", "workers", "services"]
+    folders = config.try(:watch_folders) || DEFAULT_WATCHED_FOLDERS
+
     test_files = Dir["spec/**/*.rb"]
     files = []
     testless_files = []
@@ -45,7 +57,7 @@ module TestlessFiles
       string_testless_files = ""
       testless_files.each { |testless_file| string_testless_files = string_testless_files+"\n - #{testless_file} " }
       yield(string_testless_files)
-      
+
     end
   end
 end
