@@ -1,8 +1,6 @@
 # TestlessFiles
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/testless_files`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Find files that are not being tested at all (rspec pattern)
 
 ## Installation
 
@@ -22,17 +20,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Add this to your rails_helper.rb file (after the requires)
 
-## Development
+```ruby
+TestlessFiles.verify!
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+If you need to specify new patterns use the config block. You can add it on any initializer (e.g testless_files.rb)
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+require 'testless_files'
+
+TestlessFiles.configure do |c|
+  c.watch_folders = %w(models controllers mailers workers services businesses serializers)
+end
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/testless_files. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Feel free to send pull requests =]
 
 
 ## License
